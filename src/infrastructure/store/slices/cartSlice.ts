@@ -6,8 +6,32 @@ interface CartState {
   isCartOpen: boolean;
 }
 
+const CART_STORAGE_KEY = "cart_items";
+
+const loadCartFromStorage = (): CartItem[] => {
+  try {
+    const serializedCart = localStorage.getItem(CART_STORAGE_KEY);
+    if (serializedCart === null) {
+      return [];
+    }
+    return JSON.parse(serializedCart);
+  } catch (err) {
+    console.error("Error loading cart from localStorage:", err);
+    return [];
+  }
+};
+
+const saveCartToStorage = (items: CartItem[]) => {
+  try {
+    const serializedCart = JSON.stringify(items);
+    localStorage.setItem(CART_STORAGE_KEY, serializedCart);
+  } catch (err) {
+    console.error("Error saving cart to localStorage:", err);
+  }
+};
+
 const initialState: CartState = {
-  items: [],
+  items: loadCartFromStorage(),
   isCartOpen: false
 };
 
@@ -28,6 +52,7 @@ const cartSlice = createSlice({
       } else {
         state.items.push(action.payload);
       }
+      saveCartToStorage(state.items);
     },
     removeFromCart: (state, action) => {
       state.items = state.items.filter(
@@ -38,6 +63,7 @@ const cartSlice = createSlice({
             item.color === action.payload.color
           )
       );
+      saveCartToStorage(state.items);
     },
     updateQuantity: (state, action) => {
       const item = state.items.find(
@@ -61,9 +87,11 @@ const cartSlice = createSlice({
           item.quantity = action.payload.quantity;
         }
       }
+      saveCartToStorage(state.items);
     },
     clearCart: (state) => {
       state.items = [];
+      saveCartToStorage(state.items);
     },
     openCart: (state) => {
       state.isCartOpen = true;

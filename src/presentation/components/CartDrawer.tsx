@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { useAppDispatch, useAppSelector } from "../../infrastructure/store/hooks";
-import { removeFromCart, updateQuantity } from "../../infrastructure/store/slices/cartSlice";
+import { removeFromCart, updateQuantity, closeCart } from "../../infrastructure/store/slices/cartSlice";
 import { FiShoppingCart, FiX, FiPlus, FiMinus } from "react-icons/fi";
 
 interface CartDrawerProps {
@@ -11,9 +12,15 @@ interface CartDrawerProps {
 
 function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const cartItems = useAppSelector((state) => state.cart.items);
   const drawerRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+
+  const handleCheckout = () => {
+    dispatch(closeCart());
+    navigate("/checkout");
+  };
 
   useEffect(() => {
     const drawer = drawerRef.current;
@@ -263,12 +270,13 @@ function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   Los gastos de envío e impuestos se calculan al finalizar la compra.
                 </p>
                 <div className="mt-6">
-                  <a
-                    href="#"
-                    className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                  <button
+                    type="button"
+                    onClick={handleCheckout}
+                    className="w-full flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                   >
                     Proceder al pago
-                  </a>
+                  </button>
                 </div>
                 <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                   <p>
