@@ -69,7 +69,6 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
       gsap.set(panel, { clearProps: false });
       
       const currentOpacity = window.getComputedStyle(panel).opacity;
-      const currentTransform = window.getComputedStyle(panel).transform;
 
       if (currentOpacity === "0" || currentOpacity === "") {
         gsap.set(panel, { opacity: 1, scale: 1, y: 0 });
@@ -194,7 +193,7 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                 onClick={onClose}
                 className="absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8"
               >
-                <span className="sr-only">Close</span>
+                <span className="sr-only">Cerrar</span>
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -214,100 +213,25 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
               <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
                 <img
                   src="https://tailwindcss.com/plus-assets/img/ecommerce-images/product-quick-preview-02-detail.jpg"
-                  alt="Two each of gray, white, and black shirts arranged on table."
+                  alt="Dos camisas de cada color: gris, blanco y negro, dispuestas sobre una mesa."
                   className="aspect-2/3 w-full rounded-lg bg-gray-100 object-cover sm:col-span-4 lg:col-span-5"
                 />
                 <div className="sm:col-span-8 lg:col-span-7">
                   <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">
-                    {product.description || `${product.name} 6-Pack`}
+                    {product.description || `${product.name} - Pack de 6`}
                   </h2>
 
                   <section aria-labelledby="information-heading" className="mt-2">
                     <h3 id="information-heading" className="sr-only">
-                      Product information
+                      Información del producto
                     </h3>
 
                     <p className="text-2xl text-gray-900">${product.price * 6}</p>
-
-                    <div className="mt-6">
-                      <h4 className="sr-only">Reviews</h4>
-                      <div className="flex items-center">
-                        <div className="flex items-center">
-                          <svg
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            aria-hidden="true"
-                            className="size-5 shrink-0 text-gray-900"
-                          >
-                            <path
-                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                              clipRule="evenodd"
-                              fillRule="evenodd"
-                            />
-                          </svg>
-                          <svg
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            aria-hidden="true"
-                            className="size-5 shrink-0 text-gray-900"
-                          >
-                            <path
-                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                              clipRule="evenodd"
-                              fillRule="evenodd"
-                            />
-                          </svg>
-                          <svg
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            aria-hidden="true"
-                            className="size-5 shrink-0 text-gray-900"
-                          >
-                            <path
-                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                              clipRule="evenodd"
-                              fillRule="evenodd"
-                            />
-                          </svg>
-                          <svg
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            aria-hidden="true"
-                            className="size-5 shrink-0 text-gray-900"
-                          >
-                            <path
-                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                              clipRule="evenodd"
-                              fillRule="evenodd"
-                            />
-                          </svg>
-                          <svg
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            aria-hidden="true"
-                            className="size-5 shrink-0 text-gray-200"
-                          >
-                            <path
-                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                              clipRule="evenodd"
-                              fillRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                        <p className="sr-only">3.9 out of 5 stars</p>
-                        <a
-                          href="#"
-                          className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
-                        >
-                          117 reviews
-                        </a>
-                      </div>
-                    </div>
                   </section>
 
                   <section aria-labelledby="options-heading" className="mt-10">
                     <h3 id="options-heading" className="sr-only">
-                      Product options
+                      Opciones del producto
                     </h3>
 
                     <form
@@ -329,7 +253,7 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                         }
                       }}
                     >
-                      <fieldset aria-label="Choose a color">
+                      <fieldset aria-label="Elige un color">
                         <legend className="text-sm font-medium text-gray-900">
                           Color
                         </legend>
@@ -342,7 +266,7 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                               value="white"
                               checked={selectedColor === "white"}
                               onChange={(e) => setSelectedColor(e.target.value)}
-                              aria-label="White"
+                              aria-label="Blanco"
                               className="size-8 appearance-none rounded-full bg-white forced-color-adjust-none checked:outline-2 checked:outline-offset-2 checked:outline-gray-400 focus-visible:outline-3 focus-visible:outline-offset-3"
                             />
                           </div>
@@ -353,7 +277,7 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                               value="gray"
                               checked={selectedColor === "gray"}
                               onChange={(e) => setSelectedColor(e.target.value)}
-                              aria-label="Gray"
+                              aria-label="Gris"
                               className="size-8 appearance-none rounded-full bg-gray-200 forced-color-adjust-none checked:outline-2 checked:outline-offset-2 checked:outline-gray-400 focus-visible:outline-3 focus-visible:outline-offset-3"
                             />
                           </div>
@@ -364,24 +288,16 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                               value="black"
                               checked={selectedColor === "black"}
                               onChange={(e) => setSelectedColor(e.target.value)}
-                              aria-label="Black"
+                              aria-label="Negro"
                               className="size-8 appearance-none rounded-full bg-gray-900 forced-color-adjust-none checked:outline-2 checked:outline-offset-2 checked:outline-gray-900 focus-visible:outline-3 focus-visible:outline-offset-3"
                             />
                           </div>
                         </div>
                       </fieldset>
 
-                      <fieldset aria-label="Choose a size" className="mt-10">
-                        <div className="flex items-center justify-between">
-                          <div className="text-sm font-medium text-gray-900">
-                            Size
-                          </div>
-                          <a
-                            href="#"
-                            className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
-                          >
-                            Size guide
-                          </a>
+                      <fieldset aria-label="Elige una talla" className="mt-10">
+                        <div className="text-sm font-medium text-gray-900 mb-2">
+                          Talla
                         </div>
 
                         <div className="mt-2 grid grid-cols-4 gap-3">
@@ -497,7 +413,7 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                         type="submit"
                         className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden"
                       >
-                        Add to bag
+                        Agregar al carrito
                       </button>
                     </form>
                   </section>
