@@ -11,39 +11,39 @@ const initialState: ProductsState = {
   products: [
     {
       id: 1,
-      name: "Basic Tee",
-      color: "Black",
+      name: "Camiseta Básica",
+      color: "Negro",
       price: 35,
       image: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
-      alt: "Front of men's Basic Tee in black.",
-      description: "Basic Tee 6-Pack"
+      alt: "Frente de camiseta básica para hombre en color negro.",
+      description: "Pack de 6 Camisetas Básicas"
     },
     {
       id: 2,
-      name: "Basic Tee",
-      color: "Aspen White",
+      name: "Camiseta Básica",
+      color: "Blanco Aspen",
       price: 35,
       image: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-02.jpg",
-      alt: "Front of men's Basic Tee in white.",
-      description: "Basic Tee 6-Pack"
+      alt: "Frente de camiseta básica para hombre en color blanco.",
+      description: "Pack de 6 Camisetas Básicas"
     },
     {
       id: 3,
-      name: "Basic Tee",
-      color: "Charcoal",
+      name: "Camiseta Básica",
+      color: "Carbón",
       price: 35,
       image: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-03.jpg",
-      alt: "Front of men's Basic Tee in dark gray.",
-      description: "Basic Tee 6-Pack"
+      alt: "Frente de camiseta básica para hombre en gris oscuro.",
+      description: "Pack de 6 Camisetas Básicas"
     },
     {
       id: 4,
-      name: "Artwork Tee",
-      color: "Iso Dots",
+      name: "Camiseta con Diseño",
+      color: "Puntos Isométricos",
       price: 35,
       image: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-04.jpg",
-      alt: "Front of men's Artwork Tee in peach with white and brown dots forming an isometric cube.",
-      description: "Artwork Tee 6-Pack"
+      alt: "Frente de camiseta con diseño para hombre en melocotón con puntos blancos y marrones formando un cubo isométrico.",
+      description: "Pack de 6 Camisetas con Diseño"
     }
   ],
   selectedProduct: null,
