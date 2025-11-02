@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+dialog::backdrop {
+  background-color: transparent;
+}
+
+dialog {
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+dialog:not([open]) {
+  display: none;
+}
