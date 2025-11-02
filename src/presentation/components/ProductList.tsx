@@ -1,62 +1,23 @@
 import { useState } from "react";
 import QuickView from "./QuickView";
-
-interface Product {
-  id: number;
-  name: string;
-  color: string;
-  price: string;
-  image: string;
-  alt: string;
-}
+import { useAppDispatch, useAppSelector } from "../../infrastructure/store/hooks";
+import { setSelectedProduct } from "../../infrastructure/store/slices/productsSlice";
+import type { Product } from "../../domain/types/product.types";
 
 function ProductList() {
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const dispatch = useAppDispatch();
+  const products = useAppSelector((state) => state.products.products);
+  const selectedProduct = useAppSelector((state) => state.products.selectedProduct);
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 
-  const products: Product[] = [
-    {
-      id: 1,
-      name: "Basic Tee",
-      color: "Black",
-      price: "$35",
-      image: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
-      alt: "Front of men's Basic Tee in black."
-    },
-    {
-      id: 2,
-      name: "Basic Tee",
-      color: "Aspen White",
-      price: "$35",
-      image: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-02.jpg",
-      alt: "Front of men's Basic Tee in white."
-    },
-    {
-      id: 3,
-      name: "Basic Tee",
-      color: "Charcoal",
-      price: "$35",
-      image: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-03.jpg",
-      alt: "Front of men's Basic Tee in dark gray."
-    },
-    {
-      id: 4,
-      name: "Artwork Tee",
-      color: "Iso Dots",
-      price: "$35",
-      image: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-04.jpg",
-      alt: "Front of men's Artwork Tee in peach with white and brown dots forming an isometric cube."
-    }
-  ];
-
   const handleProductClick = (product: Product) => {
-    setSelectedProduct(product);
+    dispatch(setSelectedProduct(product));
     setIsQuickViewOpen(true);
   };
 
   const handleCloseQuickView = () => {
     setIsQuickViewOpen(false);
-    setSelectedProduct(null);
+    dispatch(setSelectedProduct(null));
   };
 
   return (
@@ -85,7 +46,7 @@ function ProductList() {
                       </h3>
                       <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                     </div>
-                    <p className="text-sm font-medium text-gray-900">{product.price}</p>
+                    <p className="text-sm font-medium text-gray-900">${product.price}</p>
                   </div>
                 </button>
               </div>

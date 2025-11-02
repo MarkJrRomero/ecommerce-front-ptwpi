@@ -1,14 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-
-interface Product {
-  id: number;
-  name: string;
-  color: string;
-  price: string;
-  image: string;
-  alt: string;
-}
+import { useAppDispatch } from "../../infrastructure/store/hooks";
+import { addToCart } from "../../infrastructure/store/slices/cartSlice";
+import type { Product } from "../../domain/types/product.types";
 
 interface QuickViewProps {
   isOpen: boolean;
@@ -17,9 +11,12 @@ interface QuickViewProps {
 }
 
 function QuickView({ isOpen, onClose, product }: QuickViewProps) {
+  const dispatch = useAppDispatch();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
+  const [selectedColor, setSelectedColor] = useState("white");
+  const [selectedSize, setSelectedSize] = useState("S");
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -222,7 +219,7 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                 />
                 <div className="sm:col-span-8 lg:col-span-7">
                   <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">
-                    {product.name} 6-Pack
+                    {product.description || `${product.name} 6-Pack`}
                   </h2>
 
                   <section aria-labelledby="information-heading" className="mt-2">
@@ -230,7 +227,7 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                       Product information
                     </h3>
 
-                    <p className="text-2xl text-gray-900">$192</p>
+                    <p className="text-2xl text-gray-900">${product.price * 6}</p>
 
                     <div className="mt-6">
                       <h4 className="sr-only">Reviews</h4>
@@ -316,7 +313,20 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                     <form
                       onSubmit={(e) => {
                         e.preventDefault();
-                        onClose();
+                        if (product) {
+                          dispatch(
+                            addToCart({
+                              productId: product.id,
+                              name: product.name,
+                              color: selectedColor,
+                              price: product.price,
+                              image: product.image,
+                              quantity: 1,
+                              size: selectedSize
+                            })
+                          );
+                          onClose();
+                        }
                       }}
                     >
                       <fieldset aria-label="Choose a color">
@@ -330,7 +340,8 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                               type="radio"
                               name="color"
                               value="white"
-                              defaultChecked
+                              checked={selectedColor === "white"}
+                              onChange={(e) => setSelectedColor(e.target.value)}
                               aria-label="White"
                               className="size-8 appearance-none rounded-full bg-white forced-color-adjust-none checked:outline-2 checked:outline-offset-2 checked:outline-gray-400 focus-visible:outline-3 focus-visible:outline-offset-3"
                             />
@@ -340,6 +351,8 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                               type="radio"
                               name="color"
                               value="gray"
+                              checked={selectedColor === "gray"}
+                              onChange={(e) => setSelectedColor(e.target.value)}
                               aria-label="Gray"
                               className="size-8 appearance-none rounded-full bg-gray-200 forced-color-adjust-none checked:outline-2 checked:outline-offset-2 checked:outline-gray-400 focus-visible:outline-3 focus-visible:outline-offset-3"
                             />
@@ -349,6 +362,8 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                               type="radio"
                               name="color"
                               value="black"
+                              checked={selectedColor === "black"}
+                              onChange={(e) => setSelectedColor(e.target.value)}
                               aria-label="Black"
                               className="size-8 appearance-none rounded-full bg-gray-900 forced-color-adjust-none checked:outline-2 checked:outline-offset-2 checked:outline-gray-900 focus-visible:outline-3 focus-visible:outline-offset-3"
                             />
@@ -374,6 +389,9 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                             <input
                               type="radio"
                               name="size"
+                              value="XXS"
+                              checked={selectedSize === "XXS"}
+                              onChange={(e) => setSelectedSize(e.target.value)}
                               className="absolute inset-0 appearance-none focus:outline-none disabled:cursor-not-allowed"
                             />
                             <span className="text-sm font-medium text-gray-900 uppercase group-has-[:checked]:text-white">
@@ -384,6 +402,9 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                             <input
                               type="radio"
                               name="size"
+                              value="XS"
+                              checked={selectedSize === "XS"}
+                              onChange={(e) => setSelectedSize(e.target.value)}
                               className="absolute inset-0 appearance-none focus:outline-none disabled:cursor-not-allowed"
                             />
                             <span className="text-sm font-medium text-gray-900 uppercase group-has-[:checked]:text-white">
@@ -394,7 +415,9 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                             <input
                               type="radio"
                               name="size"
-                              defaultChecked
+                              value="S"
+                              checked={selectedSize === "S"}
+                              onChange={(e) => setSelectedSize(e.target.value)}
                               className="absolute inset-0 appearance-none focus:outline-none disabled:cursor-not-allowed"
                             />
                             <span className="text-sm font-medium text-gray-900 uppercase group-has-[:checked]:text-white">
@@ -405,6 +428,9 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                             <input
                               type="radio"
                               name="size"
+                              value="M"
+                              checked={selectedSize === "M"}
+                              onChange={(e) => setSelectedSize(e.target.value)}
                               className="absolute inset-0 appearance-none focus:outline-none disabled:cursor-not-allowed"
                             />
                             <span className="text-sm font-medium text-gray-900 uppercase group-has-[:checked]:text-white">
@@ -415,6 +441,9 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                             <input
                               type="radio"
                               name="size"
+                              value="L"
+                              checked={selectedSize === "L"}
+                              onChange={(e) => setSelectedSize(e.target.value)}
                               className="absolute inset-0 appearance-none focus:outline-none disabled:cursor-not-allowed"
                             />
                             <span className="text-sm font-medium text-gray-900 uppercase group-has-[:checked]:text-white">
@@ -425,6 +454,9 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                             <input
                               type="radio"
                               name="size"
+                              value="XL"
+                              checked={selectedSize === "XL"}
+                              onChange={(e) => setSelectedSize(e.target.value)}
                               className="absolute inset-0 appearance-none focus:outline-none disabled:cursor-not-allowed"
                             />
                             <span className="text-sm font-medium text-gray-900 uppercase group-has-[:checked]:text-white">
@@ -435,6 +467,9 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                             <input
                               type="radio"
                               name="size"
+                              value="XXL"
+                              checked={selectedSize === "XXL"}
+                              onChange={(e) => setSelectedSize(e.target.value)}
                               className="absolute inset-0 appearance-none focus:outline-none disabled:cursor-not-allowed"
                             />
                             <span className="text-sm font-medium text-gray-900 uppercase group-has-[:checked]:text-white">
@@ -445,6 +480,9 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                             <input
                               type="radio"
                               name="size"
+                              value="XXXL"
+                              checked={selectedSize === "XXXL"}
+                              onChange={(e) => setSelectedSize(e.target.value)}
                               disabled
                               className="absolute inset-0 appearance-none focus:outline-none disabled:cursor-not-allowed"
                             />
