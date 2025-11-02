@@ -2,21 +2,21 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 const column1Images = [
-  "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg",
-  "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg",
-  "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg",
+  "https://i.blogs.es/a1af9b/s23-ultra/840_560.jpeg",
+  "https://img.interempresas.net/fotos/2719589.png",
+  "https://media.gq.com.mx/photos/5f06154185180fb067835271/16:9/w_2560%2Cc_limit/GettyImages-1125585679.jpg",
 ];
 
 const column2Images = [
-  "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg",
-  "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg",
-  "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg"
+  "https://laciudadrevista.com/wp-content/uploads/2021/11/smartphones.jpg",
+  "https://http2.mlstatic.com/D_NQ_954523-MLA72205869627_102023-OO.jpg",
+  "https://www.guiadelaudifono.com/uploads/casas/eu/guiadelaudifono/webs/4c66ac9941edf64da22f30592d587c08_dwjh.jpg"
 ];
 
 const column3Images = [
-  "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg",
-  "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg",
-  "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg"
+  "https://powerdeal.com.co/cdn/shop/collections/COMPONENTE-PC_1200x1200.jpg?v=1725571264",
+  "https://www.consumer.es/app/uploads/2019/10/smartwatch.jpg",
+  "https://www.apple.com/v/macbook-pro/at/images/overview/welcome/hero_endframe__e4ls9pihykya_xlarge.jpg"
 ];
 
 function Hero() {
@@ -127,10 +127,10 @@ function Hero() {
         <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
           <div className="sm:max-w-lg">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Los estilos de verano finalmente llegaron
+              Los mejores productos del mercado
             </h1>
             <p className="mt-4 text-xl text-gray-500">
-              Este año, nuestra nueva colección de verano te protegerá de los elementos más duros del mundo.
+              Productos tecnologicos de alta calidad, con los mejores precios del mercado.
             </p>
           </div>
           <div>

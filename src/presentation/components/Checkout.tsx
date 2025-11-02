@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import { useAppSelector } from "../../infrastructure/store/hooks";
 import { FiLock, FiCreditCard, FiUser, FiMail, FiPhone, FiMapPin } from "react-icons/fi";
 import CreditCard from "./CreditCard";
+import ProductImage from "./ProductImage";
+import { formatCurrency } from "../../infrastructure/utils/formatCurrency";
 
 const validationSchema = Yup.object({
   firstName: Yup.string()
@@ -483,7 +485,7 @@ function Checkout() {
                   {cartItems.map((item, index) => (
                     <li key={`${item.productId}-${item.color}-${item.size}-${index}`} className="flex py-6">
                       <div className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
-                        <img
+                        <ProductImage
                           src={item.image}
                           alt={item.name}
                           className="size-full object-cover"
@@ -494,7 +496,7 @@ function Checkout() {
                         <div>
                           <div className="flex justify-between text-base font-medium text-gray-900">
                             <h3>{item.name}</h3>
-                            <p className="ml-4">${(item.price * item.quantity).toFixed(2)}</p>
+                            <p className="ml-4">{formatCurrency(item.price * item.quantity)}</p>
                           </div>
                           <p className="mt-1 text-sm text-gray-500">
                             {item.color}
@@ -513,19 +515,19 @@ function Checkout() {
               <div className="mt-6 space-y-3 border-t border-gray-200 pt-6">
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Subtotal</span>
-                  <span className="text-gray-900">${subtotal.toFixed(2)}</span>
+                  <span className="text-gray-900">{formatCurrency(subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Envío</span>
-                  <span className="text-gray-900">${shipping.toFixed(2)}</span>
+                  <span className="text-gray-900">{formatCurrency(shipping)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Impuestos</span>
-                  <span className="text-gray-900">${tax.toFixed(2)}</span>
+                  <span className="text-gray-900">{formatCurrency(tax)}</span>
                 </div>
                 <div className="flex justify-between text-base font-medium">
                   <span className="text-gray-900">Total</span>
-                  <span className="text-gray-900">${finalTotal.toFixed(2)}</span>
+                  <span className="text-gray-900">{formatCurrency(finalTotal)}</span>
                 </div>
               </div>
 

@@ -4,6 +4,8 @@ import { gsap } from "gsap";
 import { useAppDispatch, useAppSelector } from "../../infrastructure/store/hooks";
 import { removeFromCart, updateQuantity, closeCart } from "../../infrastructure/store/slices/cartSlice";
 import { FiShoppingCart, FiX, FiPlus, FiMinus } from "react-icons/fi";
+import { formatCurrency } from "../../infrastructure/utils/formatCurrency";
+import ProductImage from "./ProductImage";
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -164,7 +166,7 @@ function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                       {cartItems.map((item, index) => (
                         <li key={`${item.productId}-${item.color}-${item.size}-${index}`} className="flex py-6">
                           <div className="size-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
-                            <img
+                            <ProductImage
                               src={item.image}
                               alt={item.name}
                               className="size-full object-cover"
@@ -177,7 +179,7 @@ function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                                 <h3>
                                   <a href="#">{item.name}</a>
                                 </h3>
-                                <p className="ml-4">${(item.price * item.quantity).toFixed(2)}</p>
+                                <p className="ml-4">{formatCurrency(item.price * item.quantity)}</p>
                               </div>
                               <p className="mt-1 text-sm text-gray-500">
                                 {item.color}
@@ -263,7 +265,7 @@ function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                 <div className="flex justify-between text-base font-medium text-gray-900">
                   <p>Subtotal</p>
-                  <p>${totalPrice.toFixed(2)}</p>
+                  <p>{formatCurrency(totalPrice)}</p>
                 </div>
                 <p className="mt-0.5 text-sm text-gray-500">
                   Los gastos de envío e impuestos se calculan al finalizar la compra.

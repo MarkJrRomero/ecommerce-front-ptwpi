@@ -43,8 +43,8 @@ const cartSlice = createSlice({
       const existingItem = state.items.find(
         (item) =>
           item.productId === action.payload.productId &&
-          item.size === action.payload.size &&
-          item.color === action.payload.color
+          item.color === action.payload.color &&
+          (item.size === action.payload.size || (!item.size && !action.payload.size))
       );
 
       if (existingItem) {
@@ -59,8 +59,8 @@ const cartSlice = createSlice({
         (item) =>
           !(
             item.productId === action.payload.productId &&
-            item.size === action.payload.size &&
-            item.color === action.payload.color
+            item.color === action.payload.color &&
+            (item.size === action.payload.size || (!item.size && !action.payload.size))
           )
       );
       saveCartToStorage(state.items);
@@ -69,8 +69,8 @@ const cartSlice = createSlice({
       const item = state.items.find(
         (item) =>
           item.productId === action.payload.productId &&
-          item.size === action.payload.size &&
-          item.color === action.payload.color
+          item.color === action.payload.color &&
+          (item.size === action.payload.size || (!item.size && !action.payload.size))
       );
 
       if (item) {
@@ -79,8 +79,8 @@ const cartSlice = createSlice({
             (i) =>
               !(
                 i.productId === action.payload.productId &&
-                i.size === action.payload.size &&
-                i.color === action.payload.color
+                i.color === action.payload.color &&
+                (i.size === action.payload.size || (!i.size && !action.payload.size))
               )
           );
         } else {

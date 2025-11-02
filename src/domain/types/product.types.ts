@@ -6,6 +6,7 @@ export interface Product {
   image: string;
   alt: string;
   description?: string;
+  stock: number;
 }
 
 export interface CartItem {

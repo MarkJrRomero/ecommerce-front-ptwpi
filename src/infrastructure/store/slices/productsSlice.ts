@@ -1,53 +1,53 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { Product } from "../../../domain/types/product.types";
+import { fetchProducts as fetchProductsApi } from "../../api/productsApi";
 
 interface ProductsState {
   products: Product[];
   selectedProduct: Product | null;
   isLoading: boolean;
+  error: string | null;
 }
 
-const initialState: ProductsState = {
-  products: [
-    {
-      id: 1,
-      name: "Camiseta Básica",
-      color: "Negro",
-      price: 35,
-      image: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-01.jpg",
-      alt: "Frente de camiseta básica para hombre en color negro.",
-      description: "Pack de 6 Camisetas Básicas"
-    },
-    {
-      id: 2,
-      name: "Camiseta Básica",
-      color: "Blanco Aspen",
-      price: 35,
-      image: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-02.jpg",
-      alt: "Frente de camiseta básica para hombre en color blanco.",
-      description: "Pack de 6 Camisetas Básicas"
-    },
-    {
-      id: 3,
-      name: "Camiseta Básica",
-      color: "Carbón",
-      price: 35,
-      image: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-03.jpg",
-      alt: "Frente de camiseta básica para hombre en gris oscuro.",
-      description: "Pack de 6 Camisetas Básicas"
-    },
-    {
-      id: 4,
-      name: "Camiseta con Diseño",
-      color: "Puntos Isométricos",
-      price: 35,
-      image: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-01-related-product-04.jpg",
-      alt: "Frente de camiseta con diseño para hombre en melocotón con puntos blancos y marrones formando un cubo isométrico.",
-      description: "Pack de 6 Camisetas con Diseño"
+interface ApiProduct {
+  id: number;
+  name: string;
+  description: string;
+  price: string;
+  stock: number;
+  imageUrl: string;
+}
+
+const mapApiProductToProduct = (apiProduct: ApiProduct): Product => {
+  return {
+    id: apiProduct.id,
+    name: apiProduct.name,
+    color: "Estándar",
+    price: parseFloat(apiProduct.price),
+    image: apiProduct.imageUrl,
+    alt: apiProduct.description || apiProduct.name,
+    description: apiProduct.description,
+    stock: apiProduct.stock
+  };
+};
+
+export const fetchProducts = createAsyncThunk(
+  'products/fetchProducts',
+  async (_, { rejectWithValue }) => {
+    try {
+      const apiProducts = await fetchProductsApi();
+      return apiProducts.map(mapApiProductToProduct);
+    } catch (error) {
+      return rejectWithValue(error instanceof Error ? error.message : 'Error desconocido');
     }
-  ],
+  }
+);
+
+const initialState: ProductsState = {
+  products: [],
   selectedProduct: null,
-  isLoading: false
+  isLoading: false,
+  error: null
 };
 
 const productsSlice = createSlice({
@@ -60,6 +60,22 @@ const productsSlice = createSlice({
     setProducts: (state, action) => {
       state.products = action.payload;
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProducts.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.products = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      });
   }
 });
 
