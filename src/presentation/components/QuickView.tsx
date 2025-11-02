@@ -69,7 +69,6 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
       gsap.set(panel, { clearProps: false });
       
       const currentOpacity = window.getComputedStyle(panel).opacity;
-      const currentTransform = window.getComputedStyle(panel).transform;
 
       if (currentOpacity === "0" || currentOpacity === "") {
         gsap.set(panel, { opacity: 1, scale: 1, y: 0 });
@@ -228,81 +227,6 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                     </h3>
 
                     <p className="text-2xl text-gray-900">${product.price * 6}</p>
-
-                    <div className="mt-6">
-                      <h4 className="sr-only">Reseñas</h4>
-                      <div className="flex items-center">
-                        <div className="flex items-center">
-                          <svg
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            aria-hidden="true"
-                            className="size-5 shrink-0 text-gray-900"
-                          >
-                            <path
-                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                              clipRule="evenodd"
-                              fillRule="evenodd"
-                            />
-                          </svg>
-                          <svg
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            aria-hidden="true"
-                            className="size-5 shrink-0 text-gray-900"
-                          >
-                            <path
-                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                              clipRule="evenodd"
-                              fillRule="evenodd"
-                            />
-                          </svg>
-                          <svg
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            aria-hidden="true"
-                            className="size-5 shrink-0 text-gray-900"
-                          >
-                            <path
-                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                              clipRule="evenodd"
-                              fillRule="evenodd"
-                            />
-                          </svg>
-                          <svg
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            aria-hidden="true"
-                            className="size-5 shrink-0 text-gray-900"
-                          >
-                            <path
-                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                              clipRule="evenodd"
-                              fillRule="evenodd"
-                            />
-                          </svg>
-                          <svg
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            aria-hidden="true"
-                            className="size-5 shrink-0 text-gray-200"
-                          >
-                            <path
-                              d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z"
-                              clipRule="evenodd"
-                              fillRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                        <p className="sr-only">3.9 de 5 estrellas</p>
-                        <a
-                          href="#"
-                          className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
-                        >
-                          117 reseñas
-                        </a>
-                      </div>
-                    </div>
                   </section>
 
                   <section aria-labelledby="options-heading" className="mt-10">
@@ -372,16 +296,8 @@ function QuickView({ isOpen, onClose, product }: QuickViewProps) {
                       </fieldset>
 
                       <fieldset aria-label="Elige una talla" className="mt-10">
-                        <div className="flex items-center justify-between">
-                          <div className="text-sm font-medium text-gray-900">
-                            Talla
-                          </div>
-                          <a
-                            href="#"
-                            className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
-                          >
-                            Guía de tallas
-                          </a>
+                        <div className="text-sm font-medium text-gray-900 mb-2">
+                          Talla
                         </div>
 
                         <div className="mt-2 grid grid-cols-4 gap-3">

@@ -22,6 +22,8 @@ function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
     navigate("/checkout");
   };
 
+  const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
   useEffect(() => {
     const drawer = drawerRef.current;
     const overlay = overlayRef.current;
@@ -106,9 +108,6 @@ function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const handleOverlayClick = () => {
     onClose();
   };
-
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <div

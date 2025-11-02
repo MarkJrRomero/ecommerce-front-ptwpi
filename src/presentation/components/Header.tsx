@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from "../../infrastructure/store/hooks
 import { openCart, closeCart } from "../../infrastructure/store/slices/cartSlice";
 import { FiShoppingCart } from "react-icons/fi";
 import CartDrawer from "./CartDrawer";
+import { Link } from "react-router-dom";
 
 function Header() {
   const dispatch = useAppDispatch();
@@ -15,7 +16,7 @@ function Header() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
-              <h1 className="text-xl font-bold text-gray-900">Ecommerce</h1>
+             <Link to="/"> <h1 className="text-xl font-bold text-gray-900">Ecommerce</h1></Link>
             </div>
             <nav className="flex items-center space-x-4">
               <button

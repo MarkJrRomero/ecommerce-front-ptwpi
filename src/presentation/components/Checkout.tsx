@@ -168,7 +168,7 @@ function Checkout() {
                       }`}
                     />
                     {formik.touched.firstName && formik.errors.firstName && (
-                      <p className="mt-1 text-sm text-red-600">{formik.errors.firstName}</p>
+                      <p className="mt-1 text-sm text-red-600">{String(formik.errors.firstName)}</p>
                     )}
                   </div>
                   <div>
@@ -189,7 +189,7 @@ function Checkout() {
                       }`}
                     />
                     {formik.touched.lastName && formik.errors.lastName && (
-                      <p className="mt-1 text-sm text-red-600">{formik.errors.lastName}</p>
+                      <p className="mt-1 text-sm text-red-600">{String(formik.errors.lastName)}</p>
                     )}
                   </div>
                 </div>
@@ -213,7 +213,7 @@ function Checkout() {
                     }`}
                   />
                   {formik.touched.email && formik.errors.email && (
-                    <p className="mt-1 text-sm text-red-600">{formik.errors.email}</p>
+                    <p className="mt-1 text-sm text-red-600">{String(formik.errors.email)}</p>
                   )}
                 </div>
 
@@ -236,7 +236,7 @@ function Checkout() {
                     }`}
                   />
                   {formik.touched.phone && formik.errors.phone && (
-                    <p className="mt-1 text-sm text-red-600">{formik.errors.phone}</p>
+                    <p className="mt-1 text-sm text-red-600">{String(formik.errors.phone)}</p>
                   )}
                 </div>
               </div>
@@ -267,7 +267,7 @@ function Checkout() {
                     }`}
                   />
                   {formik.touched.address && formik.errors.address && (
-                    <p className="mt-1 text-sm text-red-600">{formik.errors.address}</p>
+                    <p className="mt-1 text-sm text-red-600">{String(formik.errors.address)}</p>
                   )}
                 </div>
 
@@ -290,7 +290,7 @@ function Checkout() {
                       }`}
                     />
                     {formik.touched.city && formik.errors.city && (
-                      <p className="mt-1 text-sm text-red-600">{formik.errors.city}</p>
+                      <p className="mt-1 text-sm text-red-600">{String(formik.errors.city)}</p>
                     )}
                   </div>
                   <div>
@@ -311,7 +311,7 @@ function Checkout() {
                       }`}
                     />
                     {formik.touched.postalCode && formik.errors.postalCode && (
-                      <p className="mt-1 text-sm text-red-600">{formik.errors.postalCode}</p>
+                      <p className="mt-1 text-sm text-red-600">{String(formik.errors.postalCode)}</p>
                     )}
                   </div>
                 </div>
@@ -337,7 +337,7 @@ function Checkout() {
                     <option value="Canadá">Canadá</option>
                   </select>
                   {formik.touched.country && formik.errors.country && (
-                    <p className="mt-1 text-sm text-red-600">{formik.errors.country}</p>
+                    <p className="mt-1 text-sm text-red-600">{String(formik.errors.country)}</p>
                   )}
                 </div>
               </div>
@@ -372,7 +372,7 @@ function Checkout() {
                       />
                     </div>
                     {formik.touched.cardNumber && formik.errors.cardNumber && (
-                      <p className="mt-1 text-sm text-red-600">{formik.errors.cardNumber}</p>
+                      <p className="mt-1 text-sm text-red-600">{String(formik.errors.cardNumber)}</p>
                     )}
                   </div>
 
@@ -394,7 +394,7 @@ function Checkout() {
                       }`}
                     />
                     {formik.touched.cardName && formik.errors.cardName && (
-                      <p className="mt-1 text-sm text-red-600">{formik.errors.cardName}</p>
+                      <p className="mt-1 text-sm text-red-600">{String(formik.errors.cardName)}</p>
                     )}
                   </div>
 
@@ -418,7 +418,7 @@ function Checkout() {
                         }`}
                       />
                       {formik.touched.expiryDate && formik.errors.expiryDate && (
-                        <p className="mt-1 text-sm text-red-600">{formik.errors.expiryDate}</p>
+                        <p className="mt-1 text-sm text-red-600">{String(formik.errors.expiryDate)}</p>
                       )}
                     </div>
                     <div>
@@ -444,7 +444,7 @@ function Checkout() {
                         }`}
                       />
                       {formik.touched.cvv && formik.errors.cvv && (
-                        <p className="mt-1 text-sm text-red-600">{formik.errors.cvv}</p>
+                        <p className="mt-1 text-sm text-red-600">{String(formik.errors.cvv)}</p>
                       )}
                     </div>
                   </div>
